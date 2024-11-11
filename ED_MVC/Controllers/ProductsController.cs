@@ -1,14 +1,22 @@
-﻿using ED_MVC.Models;
+﻿using ED_MVC.Domain;
+using ED_MVC.Models;
 using ED_MVC.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ED_MVC.Controllers
 {
-    public class ProductsController(IProductService service) : Controller //site/products
+    public class ProductsController(IProductService service, ICategoryService categoryService) : Controller //site/products
     {
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            List<Category> categories = await categoryService.GetCategoriesAsync();
+            ProductIndexViewModel viewModel = new ProductIndexViewModel()
+            {
+                Categories = categories,
+                CountOfProducts = 2
+            };
+
+            return View(viewModel);
         }
 
         [Route("{controller}/{id}")]

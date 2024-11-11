@@ -1,8 +1,11 @@
-﻿<h1>Product Categories</h1>
+﻿@using ED_MVC.Domain
+@model ProductIndexViewModel
 
-@* <ul class="list-unstyled">
+<h1>Product Categories</h1>
+<h2>Total Produts: @Model.CountOfProducts</h2>
+<ul class="list-unstyled">
     @foreach(Category c in Model.Categories)
     {
-        <li>c.Name</li>
+        <li>@c.Name</li>
     }
-</ul> *@
+</ul> 
