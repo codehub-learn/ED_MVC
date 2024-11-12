@@ -17,5 +17,12 @@ namespace ED_MVC.Services
         {
             return await context.Products.ToListAsync();
         }
+
+        public async Task<bool> AddProductAsync(Product product)
+        {
+            context.Add(product);
+            await context.SaveChangesAsync();
+            return true;
+        }
     }
 }

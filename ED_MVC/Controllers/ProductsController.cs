@@ -2,6 +2,7 @@
 using ED_MVC.Models;
 using ED_MVC.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ED_MVC.Controllers
 {
@@ -34,6 +35,24 @@ namespace ED_MVC.Controllers
         { 
             ProductCategoryViewModel viewModel = new() { CategoryId = id };
             return View(viewModel); //Products/Category
+        }
+
+        [Route("{controller}/addproduct")]
+        public async Task<IActionResult> AddProduct()
+        {
+            var categories = await categoryService.GetCategoriesAsync();
+            var categoriesItems = categories
+                .Select(c => new SelectListItem(c.Name, c.Id.ToString()))
+                .ToList();
+
+            return View(new AddProductViewModel() { Categories = categoriesItems });
+        }
+
+        [HttpPost, Route("{controller}/addproduct")]
+        public async Task<IActionResult> AddProduct(Product product)
+        {
+            await service.AddProductAsync(product);
+            return RedirectToAction("Details", new {id = product.Id});
         }
 
     }

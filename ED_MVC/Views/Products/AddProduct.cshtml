@@ -1,0 +1,20 @@
+﻿@model AddProductViewModel
+<h1>Add Product</h1>
+
+<form asp-controller="Products" asp-action="AddProduct" method="post" enctype="multipart/form-data">
+    <label asp-for="Product.Name"></label>
+    <input asp-for="Product.Name" />
+    <span asp-validation-for="Product.Name"></span>
+
+    <label asp-for="Product.Description"></label>
+    <input asp-for="Product.Description" />
+    <span asp-validation-for="Product.Description"></span>
+
+    <label asp-for="Product.Category" class="control-label"></label>
+    <select asp-for="Product.CategoryId" asp-items="Model.Categories" class="form-control"></select>
+    <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
