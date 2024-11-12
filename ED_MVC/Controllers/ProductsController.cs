@@ -28,5 +28,13 @@ namespace ED_MVC.Controllers
             var viewModel = new ProductDetailsViewModel() { Product = product };
             return View(viewModel);
         }
+
+        [Route("{controller}/category/{id}")]
+        public async Task<IActionResult> Category([FromRoute] int id)
+        { 
+            ProductCategoryViewModel viewModel = new() { CategoryId = id };
+            return View(viewModel); //Products/Category
+        }
+
     }
 }

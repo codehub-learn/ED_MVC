@@ -1,0 +1,15 @@
+﻿@model Category
+<div class="d-flex border rounded p-4 mb-4 align-items-start"
+     style="width: 100%; margin-top: 30px;">
+    <img src="/assets/categories/@Model.ImageLoc" class="img-fluid rounded me-4"
+         style="width: 150px; height: auto; object-fit: cover;">
+
+    <div class="d-flex flex-column flex-grow-1">
+        <div>
+            <h5 class="mb-2">@Model.Name</h5>
+            <p class="mb-3">@Model.Description</p>
+        </div>
+        <a class="btn btn-primary mt-auto align-self-end"
+           asp-controller="Products" asp-action="Category" asp-route-id="@Model.Id">Discover</a>
+    </div>
+</div>

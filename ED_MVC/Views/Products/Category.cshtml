@@ -1,0 +1,6 @@
+﻿@model ProductCategoryViewModel
+
+<h1>Component Below:</h1>
+
+@await Component.InvokeAsync("ProductComponent", Model.CategoryId);
+
