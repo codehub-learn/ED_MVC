@@ -55,5 +55,12 @@ namespace ED_MVC.Controllers
             return RedirectToAction("Details", new {id = product.Id});
         }
 
+        [Route("{controller}/delete/{id}")]
+        public async Task<IActionResult> DeleteProduct([FromRoute] int id)
+        {
+            await service.DeleteProductAsync(id);
+            return RedirectToAction("Index");
+        }
+
     }
 }

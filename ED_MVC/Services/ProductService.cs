@@ -24,5 +24,14 @@ namespace ED_MVC.Services
             await context.SaveChangesAsync();
             return true;
         }
+
+        public async Task<bool> DeleteProductAsync(int id)
+        {
+            Product? product = context.Products.Find(id);
+            if (product == null) { return false;  }
+            context.Products.Remove(product);
+            await context.SaveChangesAsync();
+            return true;
+        }
     }
 }
